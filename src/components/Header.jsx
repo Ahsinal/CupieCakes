@@ -67,7 +67,7 @@ const Header = () => {
                 </Link>
               </div>
               <div className="h3 nav-icons">
-                <Link href="/profile">
+                <Link href="/dashboard">
                   <FaUserCircle />
                 </Link>
               </div>
