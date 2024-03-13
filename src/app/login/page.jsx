@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 import { Container, Form, Button } from "react-bootstrap";
 
 const Login = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -23,9 +25,13 @@ const Login = () => {
           password,
         }
       );
-      console.log(response);
+      // console.log(response);
+      router.push("/dashboard");
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 400) {
+        setError(error.response.data.message);
+        alert(error.response.data.message);
+      }
     }
   };
   return (

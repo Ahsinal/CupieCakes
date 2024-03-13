@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Form, Button } from "react-bootstrap";
-import { Toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 const Signup = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +12,6 @@ const Signup = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [error, setError] = useState("");
-
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -45,6 +45,7 @@ const Signup = () => {
         }
       );
       alert("user registered successfully");
+      router.push("/login");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setError(error.response.data.message);
