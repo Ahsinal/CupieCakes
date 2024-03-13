@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Form, Button } from "react-bootstrap";
-
+import { Toast } from "react-toastify";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +10,7 @@ const Signup = () => {
   const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [error, setError] = useState("");
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -43,14 +44,16 @@ const Signup = () => {
           address,
         }
       );
-      console.log(response);
-      console.log("user registered successfully");
+      alert("user registered successfully");
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 400) {
+        setError(error.response.data.message);
+        alert(error.response.data.message);
+      }
     }
   };
   return (
-    <Container className="my-5 py-5">
+    <Container className=" py-5">
       <div
         className="w-50 mx-auto rounded-1  p-5"
         style={{ backgroundColor: "#acc7d4" }}

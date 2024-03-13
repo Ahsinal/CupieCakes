@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <footer>
-      <section className="shadow py-1">
+      <section className="shadow py-4">
         <Container>
           <Row className="d-flex align-items-center">
             <Col lg={3} sm={12}>
